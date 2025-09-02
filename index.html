@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GetMC Launcher</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .launcher {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      width: 90%;
+      max-width: 420px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #22c55e;
+      text-shadow: 0 0 10px #16a34a;
+    }
+    video {
+      width: 100%;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+    }
+    .play-btn {
+      background: #22c55e;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+    .play-btn:hover {
+      background: #16a34a;
+      transform: scale(1.05);
+    }
+    .tos {
+      font-size: 0.75rem;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .character {
+      margin-top: 1rem;
+      font-size: 3rem;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    iframe {
+      border: none;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="launcher" id="launcher">
+    <div class="logo">GetMC Launcher</div>
+    <video controls poster="https://i.imgur.com/CZ8X5Qf.png">
+      <source src="https://video.twimg.com/amplify_video/1954689784070201344/vid/avc1/1280x720/m-VUJrJHnW-dbSKk.mp4?tag=14" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button class="play-btn" id="playBtn">Play</button>
+    <div class="tos">By clicking "Play," you acknowledge that you have read, understood, and agree to be bound by our Terms of Service.</div>
+    <div class="character">🧟‍♂️</div>
+  </div>
+
+  <script>
+    const gameUrl = "https://eaglercraft.com/mc/1.8.8/?userscript=flameddogo99-eaglermobile.js";
+
+    if (localStorage.getItem("launched")) {
+      loadGame();
+    } else {
+      document.getElementById("playBtn").addEventListener("click", () => {
+        localStorage.setItem("launched", "true");
+        loadGame();
+      });
+    }
+
+    function loadGame() {
+      document.body.innerHTML = `<iframe src="${gameUrl}" allowfullscreen></iframe>`;
+    }
+  </script>
+</body>
+</html>
